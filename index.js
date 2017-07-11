@@ -256,17 +256,14 @@ Yobit.prototype.addBatchTrades = function addBatchTrades (symbol, type, orders, 
 }
 
 Yobit.prototype.cancelOrder = function cancelOrder (symbol, order_id, callback) {
-  this.privateRequest('cancel_order', {
+  this.privateRequest('CancelOrder', {
     symbol: symbol,
     order_id: order_id
   }, callback)
 }
 
-Yobit.prototype.getOrderInfo = function getOrderInfo (symbol, order_id, callback) {
-  this.privateRequest('order_info', {
-    symbol: symbol,
-    order_id: order_id
-  }, callback)
+Yobit.prototype.getOrderInfo = function getOrderInfo (order_id, callback) {
+  this.privateRequest('OrderInfo', {order_id}, callback)
 }
 
 Yobit.prototype.getOrdersInfo = function getOrdersInfo (symbol, type, order_id, callback) {
@@ -287,7 +284,7 @@ Yobit.prototype.getAccountRecords = function getAccountRecords (symbol, type, cu
 }
 
 Yobit.prototype.getTradeHistory = function getTradeHistory (symbol, since, callback) {
-  this.privateRequest('trade_history', {
+  this.privateRequest('TradeHistory', {
     symbol: symbol,
     since: since
   }, callback)
