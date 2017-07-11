@@ -5,7 +5,8 @@ var util = require('util'),
   request	= require('request'),
   crypto = require('crypto'),
   VError = require('verror'),
-  md5 = require('MD5')
+  md5 = require('MD5'),
+  nonce = require('nonce')(9)
 
 var Yobit = function Yobit (api_key, secret, server, timeout) {
   this.api_key = api_key
@@ -88,7 +89,7 @@ Yobit.prototype.generateNonce = function getNonce () {
   var keySeed = parseInt(this.api_key.substring(0, 5), 16)
   var dateSeed = parseInt(Date.now() / 1000)
 
-  return (dateSeed + keySeed)
+  return (dateSeed + keySeed + nonce())
 }
 
 /**
