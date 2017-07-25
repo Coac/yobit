@@ -1,28 +1,27 @@
-Yobit = require('./index.js')
-let logResponse = {}
+const Yobit = require('./index.js')
 
 // Test public data APIs
 var publicClient = new Yobit()
-var privateClient = new Yobit('', '')
 
-/**
-// get BTCUSD ticker
-publicClient.getTicker(function(err,data){
-    console.log(data)
-    return true}, 'btc_usd')
+// Get BTCUSD ticker
+publicClient.getTicker('btc_usd', cbLogData)
 
-// get BTCUSD Order Book
-publicClient.getOrderBook(function(err,data){
-    console.log(data)
-    return true}, 'btc_usd')
+// Get BTCUSD Order Book
+publicClient.getOrderBook('btc_usd', 10, cbLogData)
 
-// get BTCUSD trades
-publicClient.getTrades(function(err,data){
-    console.log(data)
-    return true}, 'btc_usd')
-**/
+// Get BTCUSD trades
+publicClient.getTrades('btc_usd', 10, cbLogData)
 
-// get Account Balance
-privateClient.getInfo(function(err,data){
-    console.log(data)
-    return true}, {})
+// Test private API
+const KEY = ''
+const SECRET = ''
+var privateClient = new Yobit(KEY, SECRET)
+
+// Add trade
+// privateClient.addTrade('btc_usd', 'buy', 1, 0.001, cbLogData)
+
+function cbLogData (err, data) {
+  if (err) throw err
+  console.log(data)
+  return true
+}
