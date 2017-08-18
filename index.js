@@ -256,9 +256,8 @@ Yobit.prototype.addBatchTrades = function addBatchTrades (symbol, type, orders, 
   }, callback)
 }
 
-Yobit.prototype.cancelOrder = function cancelOrder (symbol, order_id, callback) {
+Yobit.prototype.cancelOrder = function cancelOrder (order_id, callback) {
   this.privateRequest('CancelOrder', {
-    symbol: symbol,
     order_id: order_id
   }, callback)
 }
